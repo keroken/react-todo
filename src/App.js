@@ -12,12 +12,9 @@ class App extends Component {
       todos: [],
       time: new Date(),
     };
-    this.addTodo = this.addTodo.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.keyPress = this.keyPress.bind(this);
   }
 
-  addTodo() {
+  addTodo = () => {
     let {todos, input} = this.state;
     todos = todos.concat(input);
     this.setState({
@@ -26,11 +23,20 @@ class App extends Component {
     });
   }
 
-  handleChange(e) {
+  removeTodo = (i) => {
+    let {todos} = this.state;
+    todos = todos.slice(0,i).concat(todos.slice(i+1));
+    this.setState({
+      todos: todos,
+      input: ""
+    });
+  }
+
+  handleChange = (e) => {
     this.setState({input: e.target.value});
   }
 
-  keyPress(e) {
+  keyPress = (e) => {
     if(e.keyCode === 13) {
       this.setState({input: e.target.value});
       this.addTodo();
@@ -44,7 +50,7 @@ class App extends Component {
           <h1>React Todo</h1>
         </header>
         <TodoInput handleChange={this.handleChange} keyPress={this.keyPress} inputText={this.state.input}/>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
           
       </div>
     );

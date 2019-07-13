@@ -1,9 +1,9 @@
 import React from 'react';
 import './todo.css';
 
-const Todo = ({todo,i}) => {
+const Todo = ({todo,removeTodo,i}) => {
   return (
-    <li key={i}>{todo}</li>
+    <li key={i} onClick={e => removeTodo(i)}>{todo}</li>
   );
 };
 
