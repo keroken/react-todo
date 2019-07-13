@@ -8,37 +8,30 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      input: "",
       todos: [],
-      time: new Date(),
+      input: { text:'', key:'', done:false },
     };
   }
 
   addTodo = () => {
-    let {todos, input} = this.state;
-    todos = todos.concat(input);
-    this.setState({
-      todos: todos,
-      input: ""
-    });
-  }
-
-  removeTodo = (i) => {
-    let {todos} = this.state;
-    todos = todos.slice(0,i).concat(todos.slice(i+1));
-    this.setState({
-      todos: todos,
-      input: ""
-    });
+    const {input} = this.state;
+    if (input !=='') {
+      const todos = [...this.state.todos, input];
+      this.setState({
+        todos: todos,
+        input: { text:'',key:'', done:false }
+      });
+    }
   }
 
   handleChange = (e) => {
-    this.setState({input: e.target.value});
+    const inputText = e.target.value;
+    const input = { text: inputText, key: Date.now(), done: false };
+    this.setState({input: input});
   }
 
   keyPress = (e) => {
     if(e.keyCode === 13) {
-      this.setState({input: e.target.value});
       this.addTodo();
     }
   }
@@ -49,7 +42,7 @@ class App extends Component {
         <header className="App-header">
           <h1>React Todo</h1>
         </header>
-        <TodoInput handleChange={this.handleChange} keyPress={this.keyPress} inputText={this.state.input}/>
+        <TodoInput handleChange={this.handleChange} keyPress={this.keyPress} inputText={this.state.input.text}/>
         <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
           
       </div>
