@@ -1,0 +1,8 @@
+.todo-list {
+  list-style: none;
+}
+
+.list__todo .done {
+  color: #888;
+  text-decoration: line-through;
+}

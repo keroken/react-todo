@@ -1,7 +1,7 @@
 import React from 'react';
-import './todo-input.css';
+import './Input.css';
 
-const TodoInput = ({handleChange,keyPress,inputText}) => {
+const Input = ({handleChange,keyPress,inputText}) => {
   return (
     <input type="text"
       onChange={handleChange}
@@ -11,4 +11,4 @@ const TodoInput = ({handleChange,keyPress,inputText}) => {
   );
 };
 
-export default TodoInput;
+export default Input;

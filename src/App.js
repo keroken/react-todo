@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TodoInput from './components/todo-input';
-import TodoList from './components/todo-list';
+import Input from './components/Input';
+import List from './components/List';
 import './App.css';
 
 
@@ -14,11 +14,12 @@ class App extends Component {
   }
 
   addTodo = () => {
-    const {input} = this.state;
-    if (input !=='') {
-      const todos = [...this.state.todos, input];
+    const {todos, input} = this.state;
+    if (input.text !=='') {
+      const newTodos = todos.slice();
+      newTodos.push(input);
       this.setState({
-        todos: todos,
+        todos: newTodos,
         input: { text:'',key:'', done:false }
       });
     }
@@ -27,7 +28,7 @@ class App extends Component {
   handleChange = (e) => {
     const inputText = e.target.value;
     const input = { text: inputText, key: Date.now(), done: false };
-    this.setState({input: input});
+    this.setState({input});
   }
 
   keyPress = (e) => {
@@ -36,14 +37,44 @@ class App extends Component {
     }
   }
 
+  deleteTodo = (todo) => {
+    const {todos} = this.state;
+    const index = todos.indexOf(todo);
+    if (index > -1) {
+      let newTodos = todos.slice();
+      newTodos.splice(index,1);
+      this.setState({todos: newTodos});
+    }
+  }
+
+  toggleTodo = (todo) => {
+    const {todos} = this.state;
+    const index = todos.indexOf(todo);
+    if (index > -1) {
+      let newTodos = todos.slice();
+      todo.done = !todo.done;
+      newTodos.splice(index,1,todo);
+      this.setState({todos: newTodos});
+    }
+    
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1>React Todo</h1>
         </header>
-        <TodoInput handleChange={this.handleChange} keyPress={this.keyPress} inputText={this.state.input.text}/>
-        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
+        <Input
+          handleChange={this.handleChange}
+          keyPress={this.keyPress}
+          inputText={this.state.input.text}
+        />
+        <List
+          todos={this.state.todos}
+          toggleTodo={this.toggleTodo}
+          deleteTodo={this.deleteTodo}
+        />
           
       </div>
     );
