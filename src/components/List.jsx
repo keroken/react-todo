@@ -3,10 +3,10 @@ import Todo from './Todo';
 import './List.css';
 
 const List = ({todos, toggleTodo, deleteTodo}) => {
-  const todoList = todos.map((todo, index) => {
+  const todoList = todos.map((todo) => {
     return (
       <Todo 
-        key={index}
+        key={todo.id}
         todo={todo}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
@@ -15,7 +15,7 @@ const List = ({todos, toggleTodo, deleteTodo}) => {
   });
 
   return (
-    <ul className="todo-list">
+    <ul className="list__container">
       {todoList}
     </ul>
   );

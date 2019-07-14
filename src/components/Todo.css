@@ -1,0 +1,20 @@
+.list__todo {
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.list__todo--delete-btn {
+  margisn-left: 10px;
+  background-color: rgb(38, 228, 221);
+  border: none;
+  transition: all .2s;
+}
+
+.list__todo--delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.list__todo .done {
+  color: #888;
+  text-decoration: line-through;
+}

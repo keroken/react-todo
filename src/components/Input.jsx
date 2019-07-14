@@ -1,13 +1,18 @@
 import React from 'react';
 import './Input.css';
 
-const Input = ({handleChange,keyPress,inputText}) => {
+const Input = ({addTodo, handleChange,keyPress,inputText}) => {
   return (
-    <input type="text"
-      onChange={handleChange}
-      onKeyDown={keyPress}
-      value={inputText}
-    />
+    <div className="input__container">
+      <form className="input__form" onSubmit={addTodo}>
+      <input type="text" className="input__text"
+        onChange={handleChange}
+        value={inputText}
+      />
+      <button type="submit" className="btn input__btn"><i className="ion-ios-plus-outline"></i></button>
+      </form>
+    </div>
+    
   );
 };
 

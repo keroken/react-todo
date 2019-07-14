@@ -1,4 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 900;
+  height: 100vh;
+}
+
+.btn {
+  font-size: 18px;
+}
+
 .App {
   text-align: center;
 }
 
+.app-title {
+  font-size: 28px;
+  color: deepskyblue;
+}
