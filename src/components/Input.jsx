@@ -1,7 +1,7 @@
 import React from 'react';
 import './Input.css';
 
-const Input = ({addTodo, handleChange,keyPress,inputText}) => {
+const Input = ({addTodo, handleChange,inputText}) => {
   return (
     <div className="input__container">
       <form className="input__form" onSubmit={addTodo}>
